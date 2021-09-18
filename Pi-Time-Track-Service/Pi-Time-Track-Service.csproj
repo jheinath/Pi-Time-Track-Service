@@ -5,4 +5,8 @@
     <RootNamespace>Pi_Time_Track_Service</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
 </Project>
