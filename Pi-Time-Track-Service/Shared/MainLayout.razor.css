@@ -6,10 +6,11 @@
 
 .main {
     flex: 1;
+    background-color: #d8ddef;
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-color: #45b69c;
 }
 
 .top-row {
