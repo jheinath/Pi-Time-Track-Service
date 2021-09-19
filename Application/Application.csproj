@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="CalendarYear\CommandsAndQueries\Commands\" />
+    <Folder Include="CalendarYear\CommandsAndQueries\Queries\" />
+    <Folder Include="TimeRecord\CommandsAndQueries\Commands\" />
+    <Folder Include="TimeRecord\CommandsAndQueries\Queries\" />
+  </ItemGroup>
+
+</Project>
