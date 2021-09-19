@@ -11,4 +11,9 @@
     <Folder Include="TimeRecord\CommandsAndQueries\Queries\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Revo.Core" Version="1.25.1" />
+    <PackageReference Include="Revo.Domain" Version="1.25.1" />
+  </ItemGroup>
+
 </Project>
