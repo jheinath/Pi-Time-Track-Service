@@ -8,18 +8,18 @@ namespace Domain.Aggregates.CalendarYear.Entities
     {
         public Guid Id { get; }
         public string Name { get; private set; }
-        public DateTimeOffset Date { get; private set; }
+        public DateTimeOffset DateTime { get; private set; }
         public bool IsHalfDayHoliday { get; private set; }
 
-        private PublicHoliday(bool isHalfDayHoliday, DateTimeOffset date, string name, Guid id)
+        private PublicHoliday(bool isHalfDayHoliday, DateTimeOffset dateTime, string name, Guid id)
         {
             IsHalfDayHoliday = isHalfDayHoliday;
-            Date = date;
+            DateTime = dateTime;
             Name = name;
             Id = id;
         }
 
-        public static Result<PublicHoliday> Create(bool isHalfDayHoliday, DateTimeOffset date, string name)
+        public static Result<PublicHoliday> Create(bool isHalfDayHoliday, DateTimeOffset dateTime, string name)
         {
             var result = new Result<PublicHoliday>();
 
@@ -29,10 +29,10 @@ namespace Domain.Aggregates.CalendarYear.Entities
             if (result.IsFailed)
                 return result;
 
-            return result.WithValue(new PublicHoliday(isHalfDayHoliday, date, name, Guid.NewGuid()));
+            return result.WithValue(new PublicHoliday(isHalfDayHoliday, new DateTimeOffset(new DateTime(2020, dateTime.Month, dateTime.Day)), name, Guid.NewGuid()));
         }
 
-        public Result<PublicHoliday> Update(bool isHalfDayHoliday, DateTimeOffset date, string name)
+        public Result<PublicHoliday> Update(bool isHalfDayHoliday, DateTimeOffset dateTime, string name)
         {
             var result = new Result<PublicHoliday>();
 
@@ -43,7 +43,7 @@ namespace Domain.Aggregates.CalendarYear.Entities
                 return result;
 
             IsHalfDayHoliday = isHalfDayHoliday;
-            Date = date;
+            DateTime = new DateTimeOffset(new DateTime(2020, dateTime.Month, dateTime.Day));
             Name = name;
 
             return result.WithValue(this);

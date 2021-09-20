@@ -6,9 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Aggregates\Configuration\Enums\" />
-    <Folder Include="Aggregates\Configuration\ValueObjects\" />
     <Folder Include="Aggregates\TimeSheet\Enums\" />
-    <Folder Include="Aggregates\TimeSheet\ValueObjects\" />
   </ItemGroup>
 
   <ItemGroup>
