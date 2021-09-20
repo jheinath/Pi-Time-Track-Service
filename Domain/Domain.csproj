@@ -5,17 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Aggregates\CalendarYear\Enums\" />
-    <Folder Include="Aggregates\CalendarYear\ValueObjects\" />
-    <Folder Include="Aggregates\TimeRecord\Enums\" />
-    <Folder Include="Aggregates\TimeRecord\Entities\" />
-    <Folder Include="Aggregates\TimeRecord\ValueObjects\" />
+    <Folder Include="Aggregates\Configuration\Enums\" />
+    <Folder Include="Aggregates\Configuration\ValueObjects\" />
+    <Folder Include="Aggregates\TimeSheet\Enums\" />
+    <Folder Include="Aggregates\TimeSheet\ValueObjects\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentResults" Version="2.5.0" />
-    <PackageReference Include="Revo.Core" Version="1.25.1" />
-    <PackageReference Include="Revo.Domain" Version="1.25.1" />
   </ItemGroup>
 
 </Project>
