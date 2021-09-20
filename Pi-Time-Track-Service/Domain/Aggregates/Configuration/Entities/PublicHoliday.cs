@@ -2,7 +2,7 @@
 using Domain.Errors;
 using FluentResults;
 
-namespace Domain.Aggregates.CalendarYear.Entities
+namespace Domain.Aggregates.Configuration.Entities
 {
     public class PublicHoliday
     {

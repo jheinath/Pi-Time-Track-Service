@@ -1,5 +1,31 @@
 ﻿@page "/"
+@using Domain.Aggregates.TimeSheet
 
-<h1></h1>
+<div>
+    <div class="flexbox-center">
+        <h3>Welcome to Pi Time Track!</h3>
+        <br/>
+        <p>You did not finish the configuration for your time tracking yet.</p>
+        <p>Click here to create and finish your configuration:</p>
+        <a class="btn btn-primary" style="width: 100%;" href="/configuration">Create Configuration</a>
+     </div>
+</div>
 
 
+
+
+@code
+{
+
+    private TimeSheet timeSheet;
+
+
+
+
+    private async Task Start()
+    {
+        var result = TimeSheet.Create(2021);
+
+        timeSheet = result.Value;
+    }
+}

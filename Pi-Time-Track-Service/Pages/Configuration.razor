@@ -1,0 +1,25 @@
+﻿@page "/configuration"
+@using Domain.Aggregates.TimeSheet
+
+<div>
+    <h1>"Config"</h1>
+    <button class="btn btn-primary" style="width: 10%;" @onclick="Start">Start</button>
+</div>
+
+
+
+@code
+{
+
+    private TimeSheet timeSheet;
+
+
+
+
+    private async Task Start()
+    {
+        var result = TimeSheet.Create(2021);
+
+        timeSheet = result.Value;
+    }
+}

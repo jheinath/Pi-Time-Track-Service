@@ -11,4 +11,8 @@
     <Folder Include="TimeRecord\CommandsAndQueries\Queries\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentResults" Version="2.5.0" />
+  </ItemGroup>
+
 </Project>

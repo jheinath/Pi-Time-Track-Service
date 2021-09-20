@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain.Aggregates.CalendarYear.Entities;
 using Domain.Errors;
 using FluentResults;
+using Domain.Aggregates.Configuration.Entities;
 
 namespace Domain.Aggregates.Configuration
 {
