@@ -5,11 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Aggregates\CalendarYear\Enums\" />
-    <Folder Include="Aggregates\CalendarYear\ValueObjects\" />
-    <Folder Include="Aggregates\TimeRecord\Enums\" />
-    <Folder Include="Aggregates\TimeRecord\Entities\" />
-    <Folder Include="Aggregates\TimeRecord\ValueObjects\" />
+    <Folder Include="Aggregates\Configuration\Enums\" />
+    <Folder Include="Aggregates\Configuration\ValueObjects\" />
+    <Folder Include="Aggregates\TimeSheet\Enums\" />
+    <Folder Include="Aggregates\TimeSheet\ValueObjects\" />
   </ItemGroup>
 
   <ItemGroup>
