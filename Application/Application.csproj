@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Configuration\CommandsAndQueries\Commands\" />
     <Folder Include="Configuration\CommandsAndQueries\Queries\" />
     <Folder Include="TimeRecord\CommandsAndQueries\Commands\" />
     <Folder Include="TimeRecord\CommandsAndQueries\Queries\" />
@@ -13,6 +12,11 @@
 
   <ItemGroup>
     <PackageReference Include="FluentResults" Version="2.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Adapters.Database\Adapters.Database.csproj" />
+    <ProjectReference Include="..\Pi-Time-Track-Service\Pi-Time-Track-Service.csproj" />
   </ItemGroup>
 
 </Project>
