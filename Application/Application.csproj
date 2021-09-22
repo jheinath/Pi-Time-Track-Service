@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CalendarYear\CommandsAndQueries\Commands\" />
-    <Folder Include="CalendarYear\CommandsAndQueries\Queries\" />
+    <Folder Include="Configuration\CommandsAndQueries\Commands\" />
+    <Folder Include="Configuration\CommandsAndQueries\Queries\" />
     <Folder Include="TimeRecord\CommandsAndQueries\Commands\" />
     <Folder Include="TimeRecord\CommandsAndQueries\Queries\" />
   </ItemGroup>
