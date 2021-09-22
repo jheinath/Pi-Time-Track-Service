@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="DatabaseObjects\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Mappers\" />
+    <Folder Include="Repositories\ConfigurationRepository\" />
     <Folder Include="Repositories\TimeSheetRepository\" />
   </ItemGroup>
 
