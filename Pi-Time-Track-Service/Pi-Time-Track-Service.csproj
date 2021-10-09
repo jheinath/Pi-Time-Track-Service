@@ -6,11 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="DataTransferObjects\Configuration\" />
+    <Folder Include="DataTransferObjects\TimeSheet\" />
     <Folder Include="Data\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentResults" Version="2.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>
