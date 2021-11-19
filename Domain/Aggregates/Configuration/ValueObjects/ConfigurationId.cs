@@ -13,6 +13,11 @@ namespace Domain.Aggregates.Configuration.ValueObjects
             Value = value;
         }
 
+        internal static ConfigurationId Load(Guid value)
+        {
+            return new ConfigurationId(value);
+        }
+
         public static Result<ConfigurationId> Create(Guid timeRecordId)
         {
             var result = new Result<ConfigurationId>();

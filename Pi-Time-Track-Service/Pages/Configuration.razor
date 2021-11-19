@@ -1,14 +1,39 @@
 ﻿@page "/configuration"
-@using Domain.Aggregates.TimeSheet
+@using Application.Configuration.CommandsAndQueries.Queries
+@using Pi_Time_Track_Service.Data.Configuration
+
+@inject IGetConfigurationQuery GetConfigurationQuery
 
 <div>
-    <h1>"Config"</h1>
-    @*<button class="btn btn-primary" style="width: 10%;" @onclick="Start">Start</button>*@
+    <h1>Configuration</h1>
+    <EditForm EditContext="@Ec">
+        <InputText @bind-Value="_configurationModel.Id" />
+        <InputCheckbox @bind-Value="_configurationModel.IsEnabled" />
+        <InputText @bind-Value="_configurationModel.TogglTrackAccessToken" />
+        <InputNumber @bind-Value="_configurationModel.VacationDaysCount" />
+        <InputNumber @bind-Value="_configurationModel.WorkingHoursPerDay" />
+    </EditForm>
 </div>
-
-
 
 @code
 {
+    private ConfigurationModel _configurationModel = new ConfigurationModel();
+    private EditContext Ec { get; set; }
 
+    protected override void OnInitialized()
+    {
+        Ec = new EditContext(_configurationModel);
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        var config = await GetConfigurationQuery.ExecuteAsync();
+        _configurationModel = new ConfigurationModel
+        {
+            Id = config.Value.Id.Value.ToString(),
+            IsEnabled = config.Value.IsEnabled,
+            TogglTrackAccessToken = config.Value.TogglTrackAccessToken?.Value,
+            VacationDaysCount = config.Value.VacationDaysCount.Value,
+            WorkingHoursPerDay = config.Value.WorkingHoursPerDay.Value
+        };
+    }
 }

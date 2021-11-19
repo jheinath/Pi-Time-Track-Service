@@ -4,7 +4,7 @@ using FluentResults;
 
 namespace Application.Configuration.CommandsAndQueries.Queries
 {
-    public class GetConfigurationQuery
+    public class GetConfigurationQuery : IGetConfigurationQuery
     {
         private readonly IConfigurationRepository _configurationRepository;
 
@@ -19,5 +19,10 @@ namespace Application.Configuration.CommandsAndQueries.Queries
 
             return Result.Ok(configuration);
         }
+    }
+
+    public interface IGetConfigurationQuery
+    {
+        Task<Result<Domain.Aggregates.Configuration.Configuration>> ExecuteAsync();
     }
 }

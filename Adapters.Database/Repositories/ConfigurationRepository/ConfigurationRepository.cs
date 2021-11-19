@@ -19,18 +19,14 @@ namespace Adapters.Database.Repositories.ConfigurationRepository
             await using var cmd = conn.CreateCommand();
             conn.Open();
             cmd.CommandText = $"INSERT INTO Configuration (Id, WorkingHoursPerDay, VactionDaysCount, IsEnabled, TogglTrackAccessToken)" +
-                              $"VALUES('{configuration.Id.Value}', '{configuration.WorkingHoursPerDay.Value}', '{configuration.VacationDaysCount.Value}', '{configuration.IsEnabled}', '{configuration.TogglTrackAccessToken?.Value}');";
+                              $"VALUES('{configuration.Id.Value}', '{configuration.WorkingHoursPerDay.Value}', '{configuration.VacationDaysCount.Value}', " +
+                              $"'{configuration.IsEnabled}', '{configuration.TogglTrackAccessToken?.Value}');";
             cmd.ExecuteNonQuery();
         }
 
         public async Task UpdateAsync(Configuration configuration)
         {
             throw new NotImplementedException();
-            //await using var conn = new SqliteConnection(ConnectionString);
-            //await using var cmd = conn.CreateCommand();
-            //conn.Open();
-            //cmd.CommandText = $"CREATE TABLE IF NOT EXISTS Configuration (Id IDENTiFIER PRIMARY KEY, WorkingHoursPerDay INT, VactionDaysCount INT, IsEnabled BIT, TogglTrackAccessToken nvarchar(50));";
-            //cmd.ExecuteNonQuery();
         }
 
         public async Task<Configuration> GetAsync()
@@ -39,8 +35,12 @@ namespace Adapters.Database.Repositories.ConfigurationRepository
             conn.Open();
             var command = $"SELECT * FROM Configuration";
 
-            var configuration = conn.QueryFirstOrDefaultAsync<ConfigurationDbo>(command);
-            return Configuration.CreateNew().Value;
+            var configuration = await conn.QueryFirstOrDefaultAsync<ConfigurationDbo>(command);
+            if (configuration == null)
+                return null;
+
+            return Configuration.Load(Guid.Parse(configuration.Id), configuration.WorkingHoursPerDay,
+                configuration.VacationDaysCount, configuration.IsEnabled, configuration.TogglTrackAccessToken);
         }
     }
 }

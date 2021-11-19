@@ -12,6 +12,10 @@ namespace Domain.Aggregates.Configuration.ValueObjects
         {
             Value = value;
         }
+        internal static WorkingHoursPerDay Load(decimal value)
+        {
+            return new WorkingHoursPerDay(value);
+        }
 
         public static Result<WorkingHoursPerDay> Create(decimal workingHoursPerDay)
         {

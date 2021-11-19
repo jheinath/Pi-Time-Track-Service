@@ -1,7 +1,6 @@
-﻿
-namespace Adapters.Database.Repositories.Dbos
+﻿namespace Pi_Time_Track_Service.Data.Configuration
 {
-    public class ConfigurationDbo
+    public class ConfigurationModel
     {
         public string Id { get; set; }
         public decimal WorkingHoursPerDay { get; set; }

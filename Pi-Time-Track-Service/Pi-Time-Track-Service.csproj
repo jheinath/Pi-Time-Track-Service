@@ -8,7 +8,6 @@
   <ItemGroup>
     <Folder Include="DataTransferObjects\Configuration\" />
     <Folder Include="DataTransferObjects\TimeSheet\" />
-    <Folder Include="Data\" />
   </ItemGroup>
 
   <ItemGroup>

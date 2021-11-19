@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Configuration\CommandsAndQueries\Queries\Interfaces\" />
     <Folder Include="TimeRecord\CommandsAndQueries\Commands\" />
     <Folder Include="TimeRecord\CommandsAndQueries\Queries\" />
   </ItemGroup>

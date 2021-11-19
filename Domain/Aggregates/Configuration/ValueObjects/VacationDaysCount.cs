@@ -13,6 +13,11 @@ namespace Domain.Aggregates.Configuration.ValueObjects
             Value = value;
         }
 
+        internal static VacationDaysCount Load(int value)
+        {
+            return new VacationDaysCount(value);
+        }
+      
         public static Result<VacationDaysCount> Create(int vacationDaysCount)
         {
             var result = new Result<VacationDaysCount>();

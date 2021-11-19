@@ -23,11 +23,20 @@ namespace Domain.Aggregates.Configuration
             TogglTrackAccessToken = togglTrackAccessToken;
         }
 
+        public static Configuration Load(Guid id, decimal workingHoursPerDay,
+            int vacationDaysCount, bool isEnabled, string togglTrackAccessToken)
+        {
+            return new Configuration(ConfigurationId.Load(id), WorkingHoursPerDay.Load(workingHoursPerDay),
+                VacationDaysCount.Load(vacationDaysCount), isEnabled,
+                TogglTrackAccessToken.Load(togglTrackAccessToken));
+        }
+
         public static Result<Configuration> Create(ConfigurationId id, WorkingHoursPerDay workingHoursPerDay,
             VacationDaysCount vacationDaysCount, bool isEnabled, TogglTrackAccessToken togglTrackAccessToken)
         {
             return new Result<Configuration>().WithValue(new Configuration(id, workingHoursPerDay, vacationDaysCount, isEnabled, togglTrackAccessToken));
         }
+
 
         public static Result<Configuration> CreateNew()
         {

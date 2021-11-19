@@ -12,6 +12,11 @@ namespace Domain.Aggregates.Configuration.ValueObjects
 
         public string Value { get; }
 
+        internal static TogglTrackAccessToken Load(string value)
+        {
+            return new TogglTrackAccessToken(value);
+        }
+
         public Result<TogglTrackAccessToken> Create(string togglTrackAccessToken)
         {
             var result = new Result<TogglTrackAccessToken>();
