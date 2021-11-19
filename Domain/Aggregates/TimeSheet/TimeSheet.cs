@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Aggregates.TimeSheet.Entities;
+using Domain.Aggregates.TimeSheet.ValueObjects;
 using Domain.Errors;
 using FluentResults;
 
@@ -9,28 +10,22 @@ namespace Domain.Aggregates.TimeSheet
 {
     public class TimeSheet
     {
-        public Guid Id { get; }
-        public int Year { get; }
+        public TimeSheetId TimeSheetId { get; }
+        public Year Year { get; }
         public IEnumerable<TimeRecord> TimeRecords { get; }
 
-        private TimeSheet(Guid id, int year, IEnumerable<TimeRecord> timeRecords)
+        private TimeSheet(TimeSheetId timeSheetId, Year year, IEnumerable<TimeRecord> timeRecords)
         {
-            Id = id;
+            TimeSheetId = timeSheetId;
             Year = year;
             TimeRecords = timeRecords;
         }
 
-        public static Result<TimeSheet> Create(int year)
+        public static Result<TimeSheet> Create(TimeSheetId timeSheetId, Year year)
         {
             var result = new Result<TimeSheet>();
 
-            if (year < 0 || year > 9999)
-                result.Errors.Add(new InvalidError(nameof(year), year));
-
-            if (result.IsFailed)
-                return result;
-
-            return result.WithValue(new TimeSheet(Guid.NewGuid(), year, new List<TimeRecord>()));
+            return result.WithValue(new TimeSheet(timeSheetId, year, new List<TimeRecord>()));
         }
 
         public Result AddTimeRecord(TimeRecord timeRecord)
@@ -40,7 +35,7 @@ namespace Domain.Aggregates.TimeSheet
             if (timeRecord == null)
                 result.WithError(new RequiredError(nameof(timeRecord)));
 
-            if (TimeRecords.Any(e => timeRecord != null && e.Day.Date == timeRecord.Day.Date))
+            if (TimeRecords.Any(e => timeRecord != null && e.Day.Value.Date == timeRecord.Day.Value.Date))
                 result.WithError("Time record already exists.");
 
             var newTotalCountRecords = TimeRecords.Count();
@@ -62,17 +57,17 @@ namespace Domain.Aggregates.TimeSheet
             if (dayOfYear > DaysWithinYear || dayOfYear < 0)
                 result.WithError(new InvalidError(nameof(dayOfYear), dayOfYear));
 
-            if (TimeRecords.Any(e => e.Day.DayOfYear == dayOfYear) == false)
+            if (TimeRecords.Any(e => e.Day.Value.DayOfYear == dayOfYear) == false)
                 result.WithError("Time record does not exist.");
 
             if (result.IsFailed)
                 return result;
 
-            TimeRecords.ToList().RemoveAll(record => record.Day.DayOfYear == dayOfYear);
+            TimeRecords.ToList().RemoveAll(record => record.Day.Value.DayOfYear == dayOfYear);
 
             return result;
         }
 
-        private int DaysWithinYear => DateTime.IsLeapYear(Year) ? 366 : 365;
+        private int DaysWithinYear => DateTime.IsLeapYear(Year.Value) ? 366 : 365;
     }
 }

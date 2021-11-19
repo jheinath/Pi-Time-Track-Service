@@ -8,4 +8,8 @@
     <PackageReference Include="FluentResults" Version="2.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Aggregates\Configuration\Entities\" />
+  </ItemGroup>
+
 </Project>

@@ -2,12 +2,12 @@
 
 namespace Domain.Errors
 {
-    public class RequiredError : Error
+    public class EmptyError : Error
     {
         public string FieldName { get; }
 
-        public RequiredError(string fieldName)
-            : base($"{fieldName} is required.")
+        public EmptyError(string fieldName)
+            : base($"{fieldName} is empty.")
         {
             FieldName = fieldName;
             Metadata.Add("ErrorCode", 100);
