@@ -37,9 +37,7 @@ namespace Pi_Time_Track_Service
             services.AddDatabaseServices();
 
             //Hangfire
-            const Environment.SpecialFolder folder = Environment.SpecialFolder.LocalApplicationData;
-            var path = Environment.GetFolderPath(folder);
-            var dbPath = "Data Source=D:\\SQLite\\DBs\\PiTimeTrackService.db;";
+            const string dbPath = "Data Source=D:\\SQLite\\DBs\\PiTimeTrackService.db;";
             services.AddHangfire(x => x.UseSQLiteStorage(dbPath));
             services.AddHangfireServer();
             services.AddHangfireServices();
