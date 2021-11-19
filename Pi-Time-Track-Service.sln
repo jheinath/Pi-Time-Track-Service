@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapters", "Adapters", "{3B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{AED55607-9F0D-4EC7-92E1-18AB4FB83061}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adapters.Database", "Adapters.Database\Adapters.Database.csproj", "{A31D3502-4CCB-4522-BB92-87C415F207B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adapters.Database", "Adapters.Database\Adapters.Database.csproj", "{A31D3502-4CCB-4522-BB92-87C415F207B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adapters.Hangfire", "Adapters.Hangfire\Adapters.Hangfire.csproj", "{840A6A65-DAEC-4CF6-A0F1-EC89C3F9D097}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,12 +37,17 @@ Global
 		{A31D3502-4CCB-4522-BB92-87C415F207B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A31D3502-4CCB-4522-BB92-87C415F207B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A31D3502-4CCB-4522-BB92-87C415F207B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{840A6A65-DAEC-4CF6-A0F1-EC89C3F9D097}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{840A6A65-DAEC-4CF6-A0F1-EC89C3F9D097}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{840A6A65-DAEC-4CF6-A0F1-EC89C3F9D097}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{840A6A65-DAEC-4CF6-A0F1-EC89C3F9D097}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A31D3502-4CCB-4522-BB92-87C415F207B0} = {3B797A01-65FC-444C-B030-CC081B58AEE5}
+		{840A6A65-DAEC-4CF6-A0F1-EC89C3F9D097} = {3B797A01-65FC-444C-B030-CC081B58AEE5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E34F5C7-9EB7-4C47-9A7E-1714188221E1}

@@ -1,4 +1,5 @@
-﻿using Domain.Aggregates.Configuration.ValueObjects;
+﻿using System;
+using Domain.Aggregates.Configuration.ValueObjects;
 using Domain.Errors;
 using FluentResults;
 
@@ -20,6 +21,26 @@ namespace Domain.Aggregates.Configuration
             VacationDaysCount = vacationDaysCount;
             IsEnabled = isEnabled;
             TogglTrackAccessToken = togglTrackAccessToken;
+        }
+
+        public static Result<Configuration> Create(ConfigurationId id, WorkingHoursPerDay workingHoursPerDay,
+            VacationDaysCount vacationDaysCount, bool isEnabled, TogglTrackAccessToken togglTrackAccessToken)
+        {
+            return new Result<Configuration>().WithValue(new Configuration(id, workingHoursPerDay, vacationDaysCount, isEnabled, togglTrackAccessToken));
+        }
+
+        public static Result<Configuration> CreateNew()
+        {
+            var configurationId = ConfigurationId.CreateNew();
+            var workingHours = WorkingHoursPerDay.CreateDefault();
+            var vacationDayCount = VacationDaysCount.CreateDefault();
+
+            var mergedResult = Result.Merge(configurationId, workingHours, vacationDayCount);
+
+            if (mergedResult.IsFailed)
+                return mergedResult;
+
+            return Create(configurationId.Value, workingHours.Value, vacationDayCount.Value, false, null);
         }
 
         public Result UpdateTogglTrackAccessToken(TogglTrackAccessToken togglTrackAccessToken)

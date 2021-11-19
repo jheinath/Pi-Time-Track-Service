@@ -1,10 +1,11 @@
-﻿using Domain.Aggregates.Configuration;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace Adapters.Database.Repositories.ConfigurationRepository
+namespace Application.Configuration.Ports
 {
     public interface IConfigurationRepository
     {
-        Task InsertAsync(Configuration configuration);
+        Task InsertAsync(Domain.Aggregates.Configuration.Configuration configuration);
+        Task UpdateAsync(Domain.Aggregates.Configuration.Configuration configuration);
+        Task<Domain.Aggregates.Configuration.Configuration> GetAsync();
     }
 }

@@ -1,3 +1,11 @@
+using System;
+using Adapters.Database;
+using Adapters.Database.Install;
+using Adapters.Hangfire;
+using Adapters.Hangfire.Interfaces;
+using Application;
+using Hangfire;
+using Hangfire.SQLite;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,10 +29,24 @@ namespace Pi_Time_Track_Service
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
+            //Application
+            services.AddApplicationServices();
+
+            //Database
+            services.AddDatabaseServices();
+
+            //Hangfire
+            const Environment.SpecialFolder folder = Environment.SpecialFolder.LocalApplicationData;
+            var path = Environment.GetFolderPath(folder);
+            var dbPath = "Data Source=D:\\SQLite\\DBs\\PiTimeTrackService.db;";
+            services.AddHangfire(x => x.UseSQLiteStorage(dbPath));
+            services.AddHangfireServer();
+            services.AddHangfireServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHangfireStartup hangfireStartup, IDbSetup dbSetup)
         {
             if (env.IsDevelopment())
             {
@@ -47,6 +69,10 @@ namespace Pi_Time_Track_Service
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+            app.UseHangfireDashboard();
+            dbSetup.Install();
+            hangfireStartup.AddHangfireJobs();
         }
     }
 }

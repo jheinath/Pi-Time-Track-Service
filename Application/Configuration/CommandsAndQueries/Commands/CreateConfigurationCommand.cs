@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Adapters.Database.Repositories.ConfigurationRepository;
 using Application.Configuration.CommandsAndQueries.Commands.Interfaces;
+using Application.Configuration.Ports;
 using FluentResults;
 using ConfigurationDomain = Domain.Aggregates.Configuration.Configuration;
 
@@ -18,11 +18,21 @@ namespace Application.Configuration.CommandsAndQueries.Commands
 
         public async Task<Result<Guid>> ExecuteAsync()
         {
-            var newConfiguration = ConfigurationDomain.Create();
+            var result = new Result<Guid>();
 
-            await _configurationRepository.InsertAsync(newConfiguration);
+            var existingConfiguration = await _configurationRepository.GetAsync();
 
-            return Result.Ok(newConfiguration.Id);
+            if (existingConfiguration != null)
+                return Result.Ok(existingConfiguration.Id.Value);
+
+            var newConfigurationResult = ConfigurationDomain.CreateNew();
+
+            if (newConfigurationResult.IsFailed)
+                return result.WithErrors(newConfigurationResult.Errors);
+
+            await _configurationRepository.InsertAsync(newConfigurationResult.Value);
+
+            return Result.Ok(newConfigurationResult.Value.Id.Value);
         }
     }
 }

@@ -5,16 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="TimeRecord\CommandsAndQueries\Commands\" />
-    <Folder Include="TimeRecord\CommandsAndQueries\Queries\" />
+    <PackageReference Include="Hangfire.SQLite" Version="1.4.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentResults" Version="2.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

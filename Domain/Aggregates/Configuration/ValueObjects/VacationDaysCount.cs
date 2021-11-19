@@ -6,6 +6,7 @@ namespace Domain.Aggregates.Configuration.ValueObjects
     public class VacationDaysCount
     {
         public int Value { get; }
+        private const int DefaultValue = 30;
         
         public VacationDaysCount(int value)
         {
@@ -26,6 +27,11 @@ namespace Domain.Aggregates.Configuration.ValueObjects
             result.WithValue(timeRecordIdValue);
 
             return result;
+        }
+
+        public static Result<VacationDaysCount> CreateDefault()
+        {
+            return Create(DefaultValue);
         }
     }
 }

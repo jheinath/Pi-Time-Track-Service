@@ -6,6 +6,7 @@ namespace Domain.Aggregates.Configuration.ValueObjects
     public class WorkingHoursPerDay
     {
         public decimal Value { get; }
+        private const decimal DefaultValue = 8;
 
         private WorkingHoursPerDay(decimal value)
         {
@@ -26,6 +27,11 @@ namespace Domain.Aggregates.Configuration.ValueObjects
             result.WithValue(workingHoursPerDayValue);
 
             return result;
+        }
+
+        public static Result<WorkingHoursPerDay> CreateDefault()
+        {
+            return Create(DefaultValue);
         }
     }
 }

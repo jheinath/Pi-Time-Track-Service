@@ -21,7 +21,7 @@ namespace Domain.Aggregates.TimeSheet.Entities
             var workingHoursSum = workingHours.Sum(workingEntry => workingEntry.TimeSpan().TotalHours);
             return TimeSpan.FromHours(workingHoursSum);
         }
-      
+
         private TimeRecord(TimeRecordId id, Day day, IEnumerable<WorkingHours> workingHours,
             SickTimeDuration sickTimeDuration, IsCompletePublicHoliday isCompletePublicHoliday,
             IsHalfDayPublicHoliday isHalfDayPublicHoliday)

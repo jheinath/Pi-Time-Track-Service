@@ -13,9 +13,16 @@
 
   <ItemGroup>
     <PackageReference Include="FluentResults" Version="2.5.0" />
+    <PackageReference Include="Hangfire" Version="1.7.27" />
+    <PackageReference Include="Hangfire.SQLite" Version="1.4.2" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Adapters.Database\Adapters.Database.csproj" />
+    <ProjectReference Include="..\Adapters.Hangfire\Adapters.Hangfire.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
