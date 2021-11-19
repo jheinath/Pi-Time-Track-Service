@@ -9,14 +9,32 @@ namespace Domain.Aggregates.Configuration
         public ConfigurationId Id { get; }
         public WorkingHoursPerDay WorkingHoursPerDay { get; private set; }
         public VacationDaysCount VacationDaysCount { get; private set; }
-        public bool IsEnable { get; private set; }
+        public bool IsEnabled { get; private set; }
+        public TogglTrackAccessToken TogglTrackAccessToken { get; private set; }
 
-        private Configuration(ConfigurationId id, WorkingHoursPerDay workingHoursPerDay, VacationDaysCount vacationDaysCount, bool isEnable)
+        private Configuration(ConfigurationId id, WorkingHoursPerDay workingHoursPerDay,
+            VacationDaysCount vacationDaysCount, bool isEnabled, TogglTrackAccessToken togglTrackAccessToken)
         {
             Id = id;
             WorkingHoursPerDay = workingHoursPerDay;
             VacationDaysCount = vacationDaysCount;
-            IsEnable = isEnable;
+            IsEnabled = isEnabled;
+            TogglTrackAccessToken = togglTrackAccessToken;
+        }
+
+        public Result UpdateTogglTrackAccessToken(TogglTrackAccessToken togglTrackAccessToken)
+        {
+            var result = new Result();
+
+            if (TogglTrackAccessToken.Value == togglTrackAccessToken.Value)
+                return result;
+
+            if (result.IsFailed)
+                return result;
+
+            TogglTrackAccessToken = togglTrackAccessToken;
+
+            return result;
         }
 
         public Result UpdateWorkingHoursPerDay(WorkingHoursPerDay workingHoursPerDay)
@@ -55,7 +73,7 @@ namespace Domain.Aggregates.Configuration
         {
             var result = new Result();
 
-            IsEnable = true;
+            IsEnabled = true;
 
             return result;
         }
@@ -64,7 +82,7 @@ namespace Domain.Aggregates.Configuration
         {
             var result = new Result();
 
-            IsEnable = false;
+            IsEnabled = false;
 
             return result;
         }
