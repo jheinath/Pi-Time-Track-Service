@@ -52,7 +52,27 @@ namespace Domain.Aggregates.Configuration
             return Create(configurationId.Value, workingHours.Value, vacationDayCount.Value, false, null);
         }
 
-        public Result UpdateTogglTrackAccessToken(TogglTrackAccessToken togglTrackAccessToken)
+        public Result Update(VacationDaysCount vacationDaysCount, WorkingHoursPerDay workingHoursPerDay, TogglTrackAccessToken togglTrackAccessToken, bool enabled)
+        {
+            var accessTokenResult = UpdateTogglTrackAccessToken(togglTrackAccessToken);
+            var workingHoursResult = UpdateWorkingHoursPerDay(workingHoursPerDay);
+            var vacationResult = UpdateVacationDaysCount(vacationDaysCount);
+            var enabledChangeResult = enabled ? Enable() : Disable();
+
+            var mergedResult = Result.Merge(accessTokenResult, workingHoursResult, vacationResult, enabledChangeResult);
+
+            if (mergedResult.IsFailed)
+                return mergedResult;
+
+            VacationDaysCount = vacationDaysCount;
+            WorkingHoursPerDay = workingHoursPerDay;
+            IsEnabled = enabled;
+            TogglTrackAccessToken = togglTrackAccessToken;
+
+            return Result.Ok();
+        }
+
+        private Result UpdateTogglTrackAccessToken(TogglTrackAccessToken togglTrackAccessToken)
         {
             var result = new Result();
 
@@ -62,12 +82,10 @@ namespace Domain.Aggregates.Configuration
             if (result.IsFailed)
                 return result;
 
-            TogglTrackAccessToken = togglTrackAccessToken;
-
             return result;
         }
 
-        public Result UpdateWorkingHoursPerDay(WorkingHoursPerDay workingHoursPerDay)
+        private Result UpdateWorkingHoursPerDay(WorkingHoursPerDay workingHoursPerDay)
         {
             var result = new Result();
 
@@ -77,12 +95,10 @@ namespace Domain.Aggregates.Configuration
             if (result.IsFailed)
                 return result;
 
-            WorkingHoursPerDay = workingHoursPerDay;
-
             return result;
         }
 
-        public Result UpdateVacationDaysCount(VacationDaysCount vacationDaysCount)
+        private Result UpdateVacationDaysCount(VacationDaysCount vacationDaysCount)
         {
             var result = new Result();
 
@@ -95,15 +111,18 @@ namespace Domain.Aggregates.Configuration
             if (result.IsFailed)
                 return result;
 
-            VacationDaysCount = vacationDaysCount;
             return result;
         }
 
-        public Result Enable()
+        private Result Enable()
         {
             var result = new Result();
 
-            IsEnabled = true;
+            if (string.IsNullOrWhiteSpace(TogglTrackAccessToken.Value))
+                result.WithError(new RequiredError(nameof(TogglTrackAccessToken)));
+
+            if (result.IsFailed)
+                return result;
 
             return result;
         }
@@ -111,8 +130,6 @@ namespace Domain.Aggregates.Configuration
         public Result Disable()
         {
             var result = new Result();
-
-            IsEnabled = false;
 
             return result;
         }

@@ -6,8 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataTransferObjects\Configuration\" />
-    <Folder Include="DataTransferObjects\TimeSheet\" />
+    <Compile Remove="DataTransferObjects\**" />
+    <Content Remove="DataTransferObjects\**" />
+    <EmbeddedResource Remove="DataTransferObjects\**" />
+    <None Remove="DataTransferObjects\**" />
   </ItemGroup>
 
   <ItemGroup>

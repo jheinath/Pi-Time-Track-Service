@@ -1,18 +1,26 @@
 ﻿@page "/configuration"
+@using Application.Configuration.CommandsAndQueries.Commands.Interfaces
 @using Application.Configuration.CommandsAndQueries.Queries
 @using Pi_Time_Track_Service.Data.Configuration
 
 @inject IGetConfigurationQuery GetConfigurationQuery
+@inject IUpdateConfigurationCommand UpdateConfigurationQuery
+@inject IJSRuntime JsRuntime
 
 <div>
-    <h1>Configuration</h1>
-    <EditForm EditContext="@Ec">
-        <InputText @bind-Value="_configurationModel.Id" />
-        <InputCheckbox @bind-Value="_configurationModel.IsEnabled" />
-        <InputText @bind-Value="_configurationModel.TogglTrackAccessToken" />
-        <InputNumber @bind-Value="_configurationModel.VacationDaysCount" />
-        <InputNumber @bind-Value="_configurationModel.WorkingHoursPerDay" />
-    </EditForm>
+    <div class="flexbox-center">
+        <h3>Configuration</h3>
+        <br />
+        <EditForm EditContext="@Ec">
+            <table style="text-align: left; padding: 5px;">
+                <tr><td>Working Hours a day:</td><td><InputNumber min="1" max="24" @bind-Value="_configurationModel.WorkingHoursPerDay" /></td></tr>
+                <tr><td>VacationDays:</td><td><InputNumber min="0" max="350" @bind-Value="_configurationModel.VacationDaysCount" /></td></tr>
+                <tr><td>Access Token:</td><td><InputText @bind-Value="_configurationModel.TogglTrackAccessToken" /></td></tr>
+                <tr><td>Enabled:</td><td><InputCheckbox @bind-Value="_configurationModel.IsEnabled" /></td></tr>
+            </table>
+            <button class="btn btn-primary" style="width: 100%;" onclick="@OnSaveButtonClicked()">Save</button>
+        </EditForm>
+    </div>
 </div>
 
 @code
@@ -35,5 +43,13 @@
             VacationDaysCount = config.Value.VacationDaysCount.Value,
             WorkingHoursPerDay = config.Value.WorkingHoursPerDay.Value
         };
+    }
+
+    private async Task OnSaveButtonClicked()
+    {
+        if (!Ec.Validate())
+            return;
+
+        await UpdateConfigurationQuery.ExecuteAsync(_configurationModel.VacationDaysCount, _configurationModel.WorkingHoursPerDay, _configurationModel.IsEnabled, _configurationModel.TogglTrackAccessToken);
     }
 }

@@ -17,7 +17,7 @@ namespace Domain.Aggregates.Configuration.ValueObjects
             return new TogglTrackAccessToken(value);
         }
 
-        public Result<TogglTrackAccessToken> Create(string togglTrackAccessToken)
+        public static Result<TogglTrackAccessToken> Create(string togglTrackAccessToken)
         {
             var result = new Result<TogglTrackAccessToken>();
 

@@ -6,10 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DatabaseObjects\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Repositories\TimeSheetRepository\" />
+    <Compile Remove="DatabaseObjects\**" />
+    <Compile Remove="Extensions\**" />
+    <Compile Remove="Mappers\**" />
+    <Compile Remove="Repositories\TimeSheetRepository\**" />
+    <EmbeddedResource Remove="DatabaseObjects\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <EmbeddedResource Remove="Mappers\**" />
+    <EmbeddedResource Remove="Repositories\TimeSheetRepository\**" />
+    <None Remove="DatabaseObjects\**" />
+    <None Remove="Extensions\**" />
+    <None Remove="Mappers\**" />
+    <None Remove="Repositories\TimeSheetRepository\**" />
   </ItemGroup>
 
   <ItemGroup>

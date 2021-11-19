@@ -26,21 +26,26 @@ namespace Adapters.Database.Repositories.ConfigurationRepository
 
         public async Task UpdateAsync(Configuration configuration)
         {
-            throw new NotImplementedException();
+            await using var conn = new SqliteConnection(ConnectionString);
+            await using var cmd = conn.CreateCommand();
+            conn.Open();
+            cmd.CommandText = "DELETE FROM Configuration";
+            cmd.ExecuteNonQuery();
+            await InsertAsync(configuration);
         }
 
         public async Task<Configuration> GetAsync()
         {
             await using var conn = new SqliteConnection(ConnectionString);
             conn.Open();
-            var command = $"SELECT * FROM Configuration";
+            const string command = "SELECT * FROM Configuration";
 
             var configuration = await conn.QueryFirstOrDefaultAsync<ConfigurationDbo>(command);
             if (configuration == null)
                 return null;
 
             return Configuration.Load(Guid.Parse(configuration.Id), configuration.WorkingHoursPerDay,
-                configuration.VacationDaysCount, configuration.IsEnabled, configuration.TogglTrackAccessToken);
+                configuration.VactionDaysCount, configuration.IsEnabled, configuration.TogglTrackAccessToken);
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Application
         {
             return services
                 .AddTransient<ICreateConfigurationCommand, CreateConfigurationCommand>()
+                .AddTransient<IUpdateConfigurationCommand, UpdateConfigurationCommand>()
                 .AddTransient<IGetConfigurationQuery, GetConfigurationQuery>();
         }
     }

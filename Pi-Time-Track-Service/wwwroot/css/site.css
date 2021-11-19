@@ -14,6 +14,10 @@ a, .btn-link {
     text-align: center
 }
 
+table tr td {
+    padding: 5px;
+}
+
 .btn-primary {
     color: white;
     background-color: #7293a0;
@@ -27,6 +31,7 @@ a, .btn-link {
         border-color: #45b69c;
         border-radius: 0px; 
     }
+}
 
 .content {
     padding-top: 1.1rem;
