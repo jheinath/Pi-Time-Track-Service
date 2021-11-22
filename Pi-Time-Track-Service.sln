@@ -13,7 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adapters.Database", "Adapters.Database\Adapters.Database.csproj", "{A31D3502-4CCB-4522-BB92-87C415F207B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adapters.Hangfire", "Adapters.Hangfire\Adapters.Hangfire.csproj", "{840A6A65-DAEC-4CF6-A0F1-EC89C3F9D097}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adapters.Hangfire", "Adapters.Hangfire\Adapters.Hangfire.csproj", "{840A6A65-DAEC-4CF6-A0F1-EC89C3F9D097}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{23F55C11-8863-4903-BE3D-81185DBC5C6A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
